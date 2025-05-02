@@ -1,5 +1,6 @@
 # dictate
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Server and client to send text from a device and paste it in another. Intended to be used with [Whisper for Android](https://f-droid.org/es/packages/org.woheller69.whisper)
@@ -25,12 +26,16 @@ source env/bin/activate
 ```
 pip install -r requirements.txt
 ```
-4. Build:
+4. Generate self-signed SSL certificate:
+```
+openssl req -x509 -newkey rsa:4096 -keyout server/dictate/key.pem -out server/dictate/cert.pem -sha256 -days 365 -nodes
+```
+5. Build:
 ```
 briefcase create
 briefcase build
 ```
-5. Start the program:
+6. Start the program:
 ```
 ./dictate
 ```

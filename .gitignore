@@ -66,5 +66,5 @@ node_modules/
 www/
 
 #Server dev files
-*.png
+qr_url.png
 *.pem

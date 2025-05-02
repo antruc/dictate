@@ -1,0 +1,47 @@
+@import url(libs/chota.css);
+
+:root {
+  --color-primary: #161616;
+  --bg-color: #fefefe;
+  --bg-secondary-color: #161616;
+  --font-color: #fefefe;
+  --font-size: 2rem;
+}
+h1 {
+  color: var(--color-primary);
+}
+label {
+  color: var(--color-primary);
+}
+textarea {
+  border: 1px solid var(--bg-secondary-color);
+  resize: none;
+}
+textarea:focus {
+  box-shadow: none;
+}
+#buttons {
+  margin-top: 2vh;
+}
+#checkboxes {
+  margin-top: 6vh;
+}
+.button {
+  background: var(--bg-secondary-color);
+  color: var(--font-color);
+  -webkit-transition: none;
+  transition: none;
+  padding: 1rem 3rem;
+  margin: 10px;
+  font-weight: bold;
+  transform: none;
+}
+.button:hover {
+  opacity: 1;
+}
+body.dark {
+  --color-primary: #fefefe;
+  --bg-color: #161616;
+  --bg-secondary-color: #fefefe;
+  --font-color: #161616;
+}

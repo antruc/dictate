@@ -1,0 +1,28 @@
+{
+  "name": "dictate-client",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "prettier": "npx prettier src --check",
+    "lint": "npx eslint src",
+    "format": "npm run prettier -- --write && npm run lint -- --fix",
+    "build": "node esbuild.js",
+    "dev": "node esbuild.js development",
+    "test": "npm run prettier && npm run lint"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.25.1",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "fs-extra": "^11.3.0",
+    "globals": "^16.0.0",
+    "node-html-parser": "^7.0.1",
+    "open": "^10.1.1",
+    "prettier": "^3.5.3",
+    "prettier-eslint": "^16.4.1"
+  },
+  "license": "GPL-3.0-only"
+}

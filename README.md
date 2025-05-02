@@ -26,7 +26,7 @@ source env/bin/activate
 ```
 pip install -r requirements.txt
 ```
-4. Generate self-signed SSL certificate:
+4. Generate a self-signed SSL certificate:
 ```
 openssl req -x509 -newkey rsa:4096 -keyout server/dictate/key.pem -out server/dictate/cert.pem -sha256 -days 365 -nodes
 ```

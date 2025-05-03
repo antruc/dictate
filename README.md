@@ -17,25 +17,32 @@ Made with [Toga](https://github.com/beeware/toga) and [Briefcase](https://github
 git clone https://github.com/antruc/dictate.git
 cd dictate
 ```
-2. Set up a virtual environment:
+2. Build client:
+```
+cd client
+npm install
+npm run build
+cd ..
+```
+3. Set up a virtual environment:
 ```
 python3 -m venv env
 source env/bin/activate
 ```
-3. Install dependencies:
+4. Install dependencies:
 ```
 pip install -r requirements.txt
 ```
-4. Generate a self-signed SSL certificate:
+5. Generate a self-signed SSL certificate:
 ```
 openssl req -x509 -newkey rsa:4096 -keyout server/dictate/key.pem -out server/dictate/cert.pem -sha256 -days 365 -nodes
 ```
-5. Build:
+6. Build server:
 ```
 briefcase create
 briefcase build
 ```
-6. Start the program:
+7. Start the program:
 ```
 ./dictate
 ```

@@ -31,7 +31,7 @@ source env/bin/activate
 ```
 4. Install dependencies:
 ```
-pip install -r requirements.txt
+pip install briefcase
 ```
 5. Generate a self-signed SSL certificate:
 ```
@@ -42,8 +42,8 @@ openssl req -x509 -newkey rsa:4096 -keyout server/dictate/key.pem -out server/di
 briefcase create
 briefcase build
 ```
-7. Start the program:
+Finally, start the program:
 ```
 ./dictate
 ```
-Finally, in another device, scan the QR code to access the client interface
+In another device, scan the QR code to access the client interface

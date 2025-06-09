@@ -6,7 +6,7 @@ www
 **/*.html
 
 # Ignore eslint file:
-.eslint.config.js
+.eslint.config.mjs
 
 # Ignore esbuild.js file:
 esbuild.js

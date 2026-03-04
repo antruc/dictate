@@ -60,11 +60,11 @@ var/
 
 # Briefcase log files
 logs/
+.briefcase/
 
 # Client dev files
 node_modules/
 www/
 
-#Server dev files
-qr_url.png
+# Server dev files
 *.pem

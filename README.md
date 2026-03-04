@@ -41,9 +41,14 @@ openssl req -x509 -newkey rsa:4096 -keyout server/dictate/key.pem -out server/di
 ```
 briefcase create
 briefcase build
+briefcase package
 ```
-Finally, start the program:
+7. Build installer:
 ```
-./dictate
+briefcase package
+```
+Finally, install the program and start it:
+```
+sudo dictate
 ```
 In another device, scan the QR code to access the client interface

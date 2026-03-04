@@ -1,9 +1,6 @@
-import toga
-from toga.style import Pack
-from toga.style.pack import COLUMN, ROW
-
-import threading
+import io
 import pathlib
+import threading
 import time
 
 import http.server
@@ -11,6 +8,11 @@ import socket
 import socketserver
 import ssl
 
+import toga
+from toga.style import Pack
+from toga.style.pack import COLUMN, ROW
+
+from PIL import Image
 import pyperclip
 import pyautogui
 import segno
@@ -23,24 +25,28 @@ class Dictate(toga.App):
         main_box = toga.Box(style=Pack(direction=COLUMN))
 
         url_box = toga.Box(
-            style=Pack(direction=ROW, padding_top=10, padding_right=10, padding_left=10)
+            style=Pack(direction=ROW, margin_top=10, margin_right=10, margin_left=10)
         )
-        buttons_box = toga.Box(style=Pack(direction=ROW, padding=10))
+        buttons_box = toga.Box(style=Pack(direction=ROW, margin=10))
 
         self.host = self.get_local_ip()
         self.port = 4443
-        self.url = f"https://{self.host}:{self.port}"
+        url = f"https://{self.host}:{self.port}"
 
-        self.create_qr_image()
-        qr_image = toga.Image(pathlib.Path(__file__).parent / "qr_url.png")
+        out_stream = io.BytesIO()
+        segno.make(url).save(out_stream, kind="png", border=0, scale=15)
+        out_stream.seek(0)
+        qr_code = Image.open(out_stream)
+
+        qr_image = toga.Image(qr_code)
 
         url_label = toga.Label(
-            self.url,
-            style=Pack(flex=1, padding_top=13, padding_left=10),
+            url,
+            style=Pack(flex=1, margin_top=13, margin_left=10),
         )
         close_button = toga.Button("Close", on_press=self.exit_app, style=Pack(flex=1))
 
-        url_box.add(toga.ImageView(qr_image))
+        url_box.add(toga.ImageView(qr_image, style=Pack(width=50, height=50)))
         url_box.add(url_label)
         buttons_box.add(close_button)
 
@@ -72,21 +78,23 @@ class Dictate(toga.App):
                 content_length = int(self.headers["Content-Length"])
                 body = self.rfile.read(content_length).decode("utf-8")
                 time.sleep(0.5)
+
                 pyperclip.copy(body)  # Copy body to clipboard
                 pyautogui.hotkey("ctrl", "v")  # Paste it
                 self.send_response(200)
                 self.end_headers()
+
                 response = "Received"
                 self.wfile.write(response.encode("utf-8"))
 
             def log_message(self, format, *args):
                 return  # Silent mode
 
-        certfile = pathlib.Path(__file__).parent / "cert.pem"
-        keyfile = pathlib.Path(__file__).parent / "key.pem"
+        cert_file = pathlib.Path(__file__).parent / "cert.pem"
+        key_file = pathlib.Path(__file__).parent / "key.pem"
 
         ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-        ssl_context.load_cert_chain(certfile=certfile, keyfile=keyfile)
+        ssl_context.load_cert_chain(certfile=cert_file, keyfile=key_file)
 
         try:
             with socketserver.TCPServer((self.host, self.port), Handler) as self.httpd:
@@ -118,10 +126,6 @@ class Dictate(toga.App):
         finally:
             sock.close()
         return ip
-
-    def create_qr_image(self):
-        qrcode = segno.make_qr(self.url)
-        qrcode.save(pathlib.Path(__file__).parent / "qr_url.png", scale=2, border=0)
 
 
 def main():

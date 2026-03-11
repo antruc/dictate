@@ -16,6 +16,8 @@ label {
 textarea {
   border: 1px solid var(--bg-secondary-color);
   resize: none;
+  background-color: var(--bg-color);
+  color: var(--color-primary);
 }
 textarea:focus {
   box-shadow: none;

@@ -1,12 +1,7 @@
 import './app.css'
 import './scripts/reload.js'
+import theme from './scripts/theme.js'
 import sender from './scripts/sender.js'
 
-if (
-  window.matchMedia &&
-  window.matchMedia('(prefers-color-scheme: dark)').matches
-) {
-  document.body.classList.add('dark')
-}
-
+theme.init()
 sender.init()

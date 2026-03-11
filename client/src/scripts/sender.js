@@ -1,9 +1,9 @@
-import onEvent from './onEvent.js'
-
 const sender = {
   async sendText() {
     const textArea = document.querySelector('#textarea')
     const url = window.location.href
+
+    // Only proceed if there is text in the textarea
     if (textArea.value.length > 0) {
       try {
         await fetch(url, {
@@ -13,27 +13,23 @@ const sender = {
           },
           body: textArea.value
         })
+        // Clear the textarea after successful send
         textArea.value = ''
-      } catch (error) {
-        if (error) {
-          alert('Connection lost')
-        }
+      } catch {
+        alert('Connection lost')
       }
     }
   },
   buttonSend(event) {
     const matchButton = event.target.matches('#send')
-    if (matchButton) {
-      sender.sendText()
-    }
+    if (matchButton) sender.sendText()
   },
   autoSend(event) {
     const matchText = event.target.matches('#textarea')
     const checkbox = document.querySelector('#checkbox1')
     if (matchText) {
-      if (checkbox.checked) {
-        sender.sendText()
-      }
+      // Send the text automatically if the checkbox is checked
+      if (checkbox.checked) sender.sendText()
     }
   },
   enableButton(event) {
@@ -41,31 +37,30 @@ const sender = {
     const is_disabled = document.querySelector('#send').getAttribute('disabled')
     const sendButton = document.querySelector('#send')
     if (matchCheckbox) {
-      if (is_disabled) {
-        sendButton.removeAttribute('disabled')
-      } else {
-        sendButton.setAttribute('disabled', 'true')
-      }
+      is_disabled
+        ? sendButton.removeAttribute('disabled')
+        : sendButton.setAttribute('disabled', 'true')
     }
   },
+  // Initializes the checkbox and disables the send button
   isChecked() {
     const checkbox = document.querySelector('#checkbox1')
     const sendButton = document.querySelector('#send')
-    if (!checkbox.checked) {
-      checkbox.checked = true
-    }
+    // Check the checkbox by default if it’s unchecked
+    if (!checkbox.checked) checkbox.checked = true
+    // Disable the send button
     sendButton.setAttribute('disabled', 'true')
   },
   uncaught() {
-    window.addEventListener('unhandledrejection', () => {
+    window.addEventListener('unhandledrejection', () =>
       alert('Connection lost')
-    })
+    )
   },
   init() {
     this.isChecked()
-    onEvent('click', this.buttonSend)
-    onEvent('input', this.autoSend)
-    onEvent('click', this.enableButton)
+    document.addEventListener('click', this.buttonSend)
+    document.addEventListener('click', this.enableButton)
+    document.addEventListener('input', this.autoSend)
     this.uncaught()
   }
 }

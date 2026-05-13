@@ -463,13 +463,13 @@ legend {
   letter-spacing: 0.1rem;
 }
 input:not(
-    [type='checkbox'],
-    [type='radio'],
-    [type='submit'],
-    [type='color'],
-    [type='button'],
-    [type='reset']
-  ),
+  [type='checkbox'],
+  [type='radio'],
+  [type='submit'],
+  [type='color'],
+  [type='button'],
+  [type='reset']
+),
 select,
 textarea,
 textarea[type='text'] {

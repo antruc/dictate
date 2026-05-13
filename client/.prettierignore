@@ -4,9 +4,3 @@ www
 
 # Ignore all HTML files:
 **/*.html
-
-# Ignore eslint file:
-.eslint.config.mjs
-
-# Ignore esbuild.js file:
-esbuild.js

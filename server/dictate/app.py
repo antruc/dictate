@@ -12,10 +12,10 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
-from PIL import Image
 import pyperclip
 import pyautogui
 import segno
+from PIL import Image
 
 
 class Dictate(toga.App):

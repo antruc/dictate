@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "prettier": "npx prettier src --check",
-    "lint": "npx eslint src",
+    "prettier": "npx prettier src esbuild.js *.config.js --check",
+    "lint": "npx eslint src esbuild.js *.config.js",
     "format": "npm run lint -- --fix && npm run prettier -- --write",
     "build": "node esbuild.js",
     "dev": "node esbuild.js development",
@@ -22,5 +22,8 @@
     "open": "^10.1.1",
     "prettier": "^3.5.3"
   },
-  "license": "GPL-3.0-only"
+  "license": "GPL-3.0-only",
+  "allowScripts": {
+    "esbuild@0.25.12": true
+  }
 }

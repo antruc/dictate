@@ -41,7 +41,6 @@ openssl req -x509 -newkey rsa:4096 -keyout server/dictate/key.pem -out server/di
 ```
 briefcase create
 briefcase build
-briefcase package
 ```
 7. Build installer:
 ```
@@ -49,6 +48,6 @@ briefcase package
 ```
 Finally, install the program and start it:
 ```
-sudo dictate
+dictate
 ```
-In another device, scan the QR code to access the client interface
+In another device, scan the QR code to access the client interface. The QR code includes a one-time session token that authenticates the client, so the code must be re-scanned each time the server is restarted.

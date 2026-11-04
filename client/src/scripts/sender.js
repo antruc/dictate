@@ -6,15 +6,19 @@ const sender = {
     // Only proceed if there is text in the textarea
     if (textArea.value.length > 0) {
       try {
-        await fetch(url, {
+        const response = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain;charset=utf-8'
           },
           body: textArea.value
         })
-        // Clear the textarea after successful send
-        textArea.value = ''
+        if (response.ok) {
+          // Clear the textarea after successful send
+          textArea.value = ''
+        } else {
+          alert(`Server error (${response.status})`)
+        }
       } catch {
         alert('Connection lost')
       }

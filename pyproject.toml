@@ -2,7 +2,7 @@
 [tool.briefcase]
 project_name = "Dictate"
 bundle = "dev.antruc.dictate"
-version = "0.0.2"
+version = "0.0.3"
 url = "https://github.com/antruc/dictate"
 license.file = "LICENSE"
 author = "Antruc"

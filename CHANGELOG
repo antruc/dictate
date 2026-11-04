@@ -9,3 +9,9 @@
 * Updated Briefcase
 * Changed way to generate QR codes
 * Updated NPM packages
+
+## 0.0.3 (03 Mar 2026)
+
+* Implemented one-time session token
+* Added test
+* Minor fixes
